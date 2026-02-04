@@ -72,18 +72,50 @@ class Queue {
   }
 }
 
-let myStack = new Stack();
-let myQueue = new Queue();
-myQueue.enqueue("15");
-myQueue.enqueue("45");
-myQueue.enqueue("75");
-myQueue.enqueue("95");
-myQueue.show();
-myQueue.peek();
-myQueue.dequeue();
-myQueue.dequeue();
-myQueue.dequeue();
-myQueue.dequeue();
-myQueue.dequeue();
-myQueue.show();
-myQueue.peek();
+class ListNode {
+  #item;
+  #nextPointer;
+  constructor(inItem) {
+    this.#item = inItem;
+    this.#nextPointer = null;
+  }
+
+  setNextPointer(value) {
+    this.#nextPointer = value;
+  }
+
+  setItem(value) {
+    this.#item = value;
+  }
+}
+
+class LinkedList {
+  #head;
+  #tail;
+  #length;
+  constructor() {
+    this.#head = null;
+    this.#tail = null;
+    this.#length = 0;
+  }
+
+  append(value) {
+    let node = new ListNode(value);
+    if (!this.#head) {
+      this.#head = node;
+      this.#tail = this.#head;
+    } else {
+      this.#tail.setNextPointer(node);
+      this.#tail = node;
+    }
+
+    this.#length += 1;
+  }
+}
+
+let myLinkedList = new LinkedList();
+myLinkedList.append("54");
+myLinkedList.append("147");
+myLinkedList.append("1426");
+
+console.log(myLinkedList);
