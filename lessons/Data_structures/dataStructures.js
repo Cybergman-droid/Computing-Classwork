@@ -117,5 +117,3 @@ let myLinkedList = new LinkedList();
 myLinkedList.append("54");
 myLinkedList.append("147");
 myLinkedList.append("1426");
-
-console.log(myLinkedList);
