@@ -73,9 +73,11 @@ class Queue {
 }
 
 class ListNode {
+  #nodeNum;
   #item;
   #nextPointer;
   constructor(inItem) {
+    this.#nodeNum = null;
     this.#item = inItem;
     this.#nextPointer = null;
   }
@@ -87,16 +89,30 @@ class ListNode {
   setItem(value) {
     this.#item = value;
   }
+
+  setNodeNum(value) {
+    this.#nodeNum = value;
+  }
+
+  getItem() {
+    return this.#item;
+  }
+
+  getNextPointer() {
+    return this.#nextPointer;
+  }
 }
 
 class LinkedList {
   #head;
   #tail;
   #length;
+  #freeListPointer;
   constructor() {
     this.#head = null;
     this.#tail = null;
     this.#length = 0;
+    this.#freeListPointer = 1;
   }
 
   append(value) {
@@ -111,9 +127,24 @@ class LinkedList {
 
     this.#length += 1;
   }
+
+  remove(value) {
+    if (this.#length >= 1) {
+      let currentNode = this.#head;
+      let previousNode = null;
+      let nodeValue = currentNode.getItem();
+      let nodeNextPointer = currentNode.getNextPointer();
+      if (nodeValue == value) {
+        this.#head = nodeNextPointer;
+      } else {
+        currentNode = nodeNextPointer;
+      }
+    }
+  }
 }
 
 let myLinkedList = new LinkedList();
 myLinkedList.append("54");
 myLinkedList.append("147");
 myLinkedList.append("1426");
+console.log(myLinkedList);
