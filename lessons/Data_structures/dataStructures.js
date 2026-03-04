@@ -143,8 +143,28 @@ class LinkedList {
   }
 }
 
-let myLinkedList = new LinkedList();
-myLinkedList.append("54");
-myLinkedList.append("147");
-myLinkedList.append("1426");
-console.log(myLinkedList);
+let myLinkedList;
+let createBtn = document.getElementById("createBtn");
+let submitBtn = document.getElementById("submitBtn");
+let listNameInputField = document.getElementById("listNameInputField");
+let itemInputField = document.getElementById("itemInputField");
+
+createBtn.addEventListener("click", () => {
+  let name = listNameInputField.value.trim();
+  myLinkedList = new LinkedList();
+  createBtn.disabled = true;
+  createBtn.textContent = "Linked List already created";
+  console.log(myLinkedList);
+});
+
+submitBtn.addEventListener("click", () => {
+  if (myLinkedList) {
+    value = itemInputField.value.trim();
+    if (value === "") {
+      console.warn("Field is not populated");
+    } else {
+      myLinkedList.append(value);
+      console.log(`${value} has been appended to the linked list`);
+    }
+  }
+});
