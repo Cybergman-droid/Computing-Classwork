@@ -6,8 +6,7 @@ function setup() {
   castle = new Sprite();
   castle.w = 100;
   castle.h = 100;
-  // castle .img  = castlrImg
-  castle.physics = STATIC;
+  castle.img = castle.physics = STATIC;
   castle.health = 100;
 
   enemies = new Group();
