@@ -1,161 +1,160 @@
 class Stack {
-    #items;
-    #topPointer;
+  #items;
+  #topPointer;
 
-    constructor() {
-        this.#items = [];
-        this.#topPointer = -1;
-    }
+  constructor() {
+    this.#items = [];
+    this.#topPointer = -1;
+  }
 
-    push(item) {
-        this.#items.push(item);
-        this.#topPointer += 1;
-    }
+  push(item) {
+    this.#items.push(item);
+    this.#topPointer += 1;
+  }
 
-    pop() {
-        if (this.#topPointer < 0) {
-            console.log("the stack is empty");
-        } else {
-            this.#topPointer -= 1;
-        }
+  pop() {
+    if (this.#topPointer < 0) {
+      console.log("the stack is empty");
+    } else {
+      this.#topPointer -= 1;
     }
+  }
 
-    peek() {
-        if (this.#topPointer < 0) {
-            console.log("the stack is empty");
-        } else {
-            console.log(this.#items[this.#topPointer]);
-        }
+  peek() {
+    if (this.#topPointer < 0) {
+      console.log("the stack is empty");
+    } else {
+      console.log(this.#items[this.#topPointer]);
     }
+  }
 
-    show() {
-        console.log(this.#items);
-    }
+  show() {
+    console.log(this.#items);
+  }
 }
 
 class Queue {
-    #items;
-    #frontPointer;
-    #backPointer;
+  #items;
+  #frontPointer;
+  #backPointer;
 
-    constructor() {
-        this.#items = [];
-        this.#frontPointer = -1;
-        this.#backPointer = -1;
-    }
+  constructor() {
+    this.#items = [];
+    this.#frontPointer = -1;
+    this.#backPointer = -1;
+  }
 
-    enqueue(item) {
-        if (!this.#items.length >= 1) {
-            this.#items.push(item);
-            this.#frontPointer += 1;
-            this.#backPointer += 1;
-        } else {
-            this.#items.push(item);
-            this.#backPointer += 1;
-        }
+  enqueue(item) {
+    if (!this.#items.length >= 1) {
+      this.#items.push(item);
+      this.#frontPointer += 1;
+      this.#backPointer += 1;
+    } else {
+      this.#items.push(item);
+      this.#backPointer += 1;
     }
+  }
 
-    dequeue() {
-        if (this.#items.length < 0) {
-            console.log("the queue is empty");
-        } else {
-            this.#frontPointer += 1;
-        }
+  dequeue() {
+    if (this.#items.length < 0) {
+      console.log("the queue is empty");
+    } else {
+      this.#frontPointer += 1;
     }
+  }
 
-    peek() {
-        if (!this.#items.length >= 1) {
-            console.log(this.#items[this.#frontPointer]);
-        }
+  peek() {
+    if (!this.#items.length >= 1) {
+      console.log(this.#items[this.#frontPointer]);
     }
+  }
 
-    show() {
-        console.log(this.#items);
-    }
+  show() {
+    console.log(this.#items);
+  }
 }
 
 class ListNode {
-    #nodeNum;
-    #item;
-    #nextPointer;
+  #nodeNum;
+  #item;
+  #nextPointer;
 
-    constructor(inItem) {
-        this.#nodeNum = null;
-        this.#item = inItem;
-        this.#nextPointer = null;
-    }
+  constructor(inItem) {
+    this.#nodeNum = null;
+    this.#item = inItem;
+    this.#nextPointer = null;
+  }
 
-    setNextPointer(value) {
-        this.#nextPointer = value;
-    }
+  setNextPointer(value) {
+    this.#nextPointer = value;
+  }
 
-    setItem(value) {
-        this.#item = value;
-    }
+  setItem(value) {
+    this.#item = value;
+  }
 
-    setNodeNum(value) {
-        this.#nodeNum = value;
-    }
+  setNodeNum(value) {
+    this.#nodeNum = value;
+  }
 
-    getItem() {
-        return this.#item;
-    }
+  getItem() {
+    return this.#item;
+  }
 
-    getNextPointer() {
-        return this.#nextPointer;
-    }
+  getNextPointer() {
+    return this.#nextPointer;
+  }
 }
 
 class LinkedList {
-    #head;
-    #tail;
-    #length;
-    #freeListPointer;
+  #head;
+  #tail;
+  #length;
+  #freeListPointer;
 
-    constructor() {
-        this.#head = null;
-        this.#tail = null;
-        this.#length = 0;
-        this.#freeListPointer = 1;
+  constructor() {
+    this.#head = null;
+    this.#tail = null;
+    this.#length = 0;
+    this.#freeListPointer = 1;
+  }
+
+  append(value) {
+    let node = new ListNode(value);
+    if (!this.#head) {
+      this.#head = node;
+      this.#tail = this.#head;
+    } else {
+      this.#tail.setNextPointer(node);
+      this.#tail = node;
     }
 
-    append(value) {
-        let node = new ListNode(value);
-        if (!this.#head) {
-            this.#head = node;
-            this.#tail = this.#head;
-        } else {
-            this.#tail.setNextPointer(node);
-            this.#tail = node;
-        }
+    this.#length += 1;
+  }
 
-        this.#length += 1;
+  remove(value) {
+    if (this.#length >= 1) {
+      let currentNode = this.#head;
+      let previousNode = null;
+      let nodeValue = currentNode.getItem();
+      let nodeNextPointer = currentNode.getNextPointer();
+      if (nodeValue == value) {
+        this.#head = nodeNextPointer;
+      } else {
+        currentNode = nodeNextPointer;
+      }
     }
-
-    remove(value) {
-        if (this.#length >= 1) {
-            let currentNode = this.#head;
-            let previousNode = null;
-            let nodeValue = currentNode.getItem();
-            let nodeNextPointer = currentNode.getNextPointer();
-            if (nodeValue == value) {
-                this.#head = nodeNextPointer;
-            } else {
-                currentNode = nodeNextPointer;
-            }
-        }
-    }
+  }
 }
 
 class NameLinkedList {
-    name;
-    linkedList;
+  name;
+  linkedList;
 
-    constructor(inName, inLinkedList) {
-        this.name = inName;
-        this.linkedList = inLinkedList;
-    }
-
+  constructor(inName, inLinkedList) {
+    this.name = inName;
+    this.linkedList = inLinkedList;
+  }
 }
 
 let myLinkedList;
@@ -167,23 +166,32 @@ let itemInputField = document.getElementById("itemInputField");
 
 // create a linked list
 createBtn.addEventListener("click", () => {
-    let name = listNameInputField.value.trim();
-    myLinkedList = new LinkedList();
-    let object = new NameLinkedList(name, myLinkedList);
-    linkedListArray.append(object);
-    createBtn.disabled = true;
-    createBtn.textContent = "Linked List already created";
-    console.log(myLinkedList);
+  let name = listNameInputField.value.trim();
+  myLinkedList = new LinkedList();
+  let object = new NameLinkedList(name, myLinkedList);
+  linkedListArray.push(object);
+  createBtn.disabled = true;
+  listNameInputField.disabled = true;
+  createBtn.textContent = "Linked List already created";
+  console.log(myLinkedList);
 });
 
+submitBtn.addEventListener("keydown", logKey);
+
+function logKey(e) {
+  console.log(e);
+}
+
 submitBtn.addEventListener("click", () => {
-    if (myLinkedList) {
-        let value = itemInputField.value.trim();
-        if (value === "") {
-            console.warn("Field is not populated");
-        } else {
-            myLinkedList.append(value);
-            console.log(`${value} has been appended to the linked list`);
-        }
+  if (myLinkedList) {
+    let value = itemInputField.value.trim();
+    if (value === "") {
+      console.warn("Field is not populated");
+    } else {
+      myLinkedList.append(value);
+      console.log(`${value} has been appended to the linked list`);
     }
+  } else {
+    console.log("no list has been created");
+  }
 });
