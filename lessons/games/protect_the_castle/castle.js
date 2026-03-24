@@ -1,19 +1,40 @@
 let state = 0;
-function preload() {}
+function preload() {
+  cursorImg1 = loadImage(
+    "/lessons/games/protect_the_castle/castle_assets/openCursor.png"
+  );
+  cursorImg2 = loadImage(
+    "/lessons/games/protect_the_castle/castle_assets/closedCursor.png"
+  );
+  enemyImg = loadImage(
+    "/lessons/games/protect_the_castle/castle_assets/enemyImg.png"
+  );
+  castleImg = loadImage(
+    "/lessons/games/protect_the_castle/castle_assets/castle.png"
+  );
+}
 
 function setup() {
   createCanvas();
   castle = new Sprite();
   castle.w = 100;
   castle.h = 100;
-  castle.img = castle.physics = STATIC;
+  castle.img = castleImg;
+  castle.physics = STATIC;
   castle.health = 100;
+  castle.scale = 2;
 
   enemies = new Group();
   enemies.physics = DYNAMIC;
+  enemies.img = enemyImg;
+  enemies.scsale = 2;
 
   cursor = new Sprite();
   cursor.physics = NONE;
+  cursor.img = cursorImg1;
+  cursor.scale = 5;
+  cursor.w = 50;
+  cursor.h = 50;
 
   setInterval(spawnEnemies, 500);
 
@@ -27,7 +48,7 @@ function update() {
       mouseMovement();
       enemyMovement(); // playing
       break;
-    case 1:
+    case 1: //Paused
       break;
   }
 
