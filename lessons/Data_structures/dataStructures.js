@@ -195,3 +195,4 @@ submitBtn.addEventListener("click", () => {
     console.log("no list has been created");
   }
 });
+//random stuff
